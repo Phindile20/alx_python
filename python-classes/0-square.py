@@ -1,23 +1,20 @@
-"""
-Module 0-square
-This module defines a Square class with a private instance attribute 'size'.
-"""
-
-
 class Square:
-
-    """
-   This is a simple class to represent a square.
-
-   Attributes:
-       size: private attribute with no type/value verification
-   """
-
     def __init__(self, size):
-        """
-       Initialize a Square instance with a given size.
+        self.__size = size
 
-       Parameters:
-           size (int): The size of the square.
-       """
-        self.__size = sizei
+    def __str__(self):
+        return f"Square({self.__size})"
+
+my_square = Square(3)
+print(type(my_square))
+print(my_square.__dict__)
+
+try:
+    print(my_square.size)
+except Exception as e:
+    print(e)
+
+try:
+    print(my_square.__size)
+except Exception as e:
+    print(e)
