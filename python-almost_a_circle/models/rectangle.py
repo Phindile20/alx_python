@@ -30,3 +30,7 @@ class Rectangle(Base):
               raise ValueError("y must be >= 0")
         self.__y = y
 
+        @property
+    def width(self):
+         """Getter method for width attribute."""
+         return self.__width
