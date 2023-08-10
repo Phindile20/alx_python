@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 """Class rectangle inherits from Base class"""
 from .base import Base
 
@@ -30,7 +28,59 @@ class Rectangle(Base):
               raise ValueError("y must be >= 0")
         self.__y = y
 
-        @property
+    @property
     def width(self):
          """Getter method for width attribute."""
          return self.__width
+     
+    @width.setter
+    def width(self,value):
+         """Setter method for width attribute."""
+         if type(value) is not int:
+              raise TypeError("width must be an integer")
+         if value <= 0:
+              raise ValueError("width must be > 0")
+         self.__width = value
+
+    @property
+    def height(self):
+         """Getter method for height attribute."""
+         return self.__height
+     
+    @height.setter
+    def height(self,value): 
+        """Setter method for width attribute.""" 
+        if type(value) is not int:
+              raise TypeError("width must be an integer")
+        if value <= 0:
+              raise ValueError("width must be > 0")
+        self.__height = value
+
+    @property
+    def x(self):
+        """Setter method for width attribute."""
+        return self.__x
+     
+    @x.setter
+    def x(self,value):
+         """Setter method for width attribute."""
+         if type(value) is not int:
+              raise TypeError("x must be an integer")
+         if value < 0:
+              raise ValueError("x must be >= 0")
+         self.__x = value
+
+    @property
+    def y(self):
+         """Setter method for width attribute."""
+         return self.__y
+     
+    @y.setter
+    def y(self, value):
+         """Setter method for width attribute."""
+         if type(value) is not int:
+              raise TypeError("y must be an integer")
+         if value < 0:
+              raise ValueError("x must be >= 0")
+         self.__x = value
+
