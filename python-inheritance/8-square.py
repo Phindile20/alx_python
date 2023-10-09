@@ -1,57 +1,89 @@
-'''
-This module defines classes for geometry calculations.
-'''
+"""
+This module defines the Square class.
+
+The Square class inherits from the Rectangle class.
+It has one private attribute: size.
+
+The Square class has an area() method that calculates its area.
+"""
 
 
-class BaseGeometry:
-    '''
-    A base class for geometry calculations.
-    '''
+class DefinitionOverrideMetaClass(type):
+    """def __new__(cls, name, bases, attrs):
+    # Customize the class creation process here
+    return super().__new__(cls, name, bases, attrs)"""
 
-    def area(self):
-        raise Exception("area() is not implemented")
+    def __dir__(cls):
+        """
+        Returns:
+            list: List of attributes excluding __init_subclass__.
+        """
+        return [
+            attribute
+            for attribute in super().__dir__()
+            if attribute != "__init_subclass__"
+        ]
 
-    def integer_validator(self, name, value):
-        if not isinstance(value, int):
-            raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
 
-
-class Rectangle(BaseGeometry):
-    '''
-    A class representing a rectangle.
-
-   Attributes:
-       width: private attribute.
-       height: private attribute.
-       Inherited function - integer_validator
-    '''
-
-    def __init__(self, width, height):
-        self.__width = 0
-        self.__height = 0
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
-        self.__width = width
-        self.__height = height
-
-    def area(self):
-        return self.__width * self.__height
-
-    def __str__(self):
-        return "[Rectangle] {}/{}".format(self.__width, self.__height)
+Rectangle = __import__("7-rectangle").Rectangle
 
 
 class Square(Rectangle):
-    '''
-    A class representing a square inheriting properties from class Rectangle.
-    '''
+    """
+    This class defines a rectangle.
+
+    Attributes:
+        _width (int): The width of the rectangle.
+        _height (int): The height of the rectangle.
+
+    Methods:
+        area(): Calculates the area of the rectangle.
+
+    Raises:
+        AttributeError: If the attribute width or height is accessed.
+        TypeError: If the value of size width or height is not an integer.
+        ValueError: If the value of size is less than or equal to 0.
+    """
 
     def __init__(self, size):
+        """
+        Initializes a new square.
+
+        Args:
+            size (int): The size of the square
+
+        Raises:
+            TypeError: If the value of size is not an integer.
+            ValueError: If the value of size is less than or equal to 0.
+        """
         self.integer_validator("size", size)
-        super().__init__(size, size)
+        self._size = size
+
+    def area(self):
+        """
+        Calculates the area of the rectangle.
+
+        Returns:
+            int: The area of the rectangle.
+        """
+        return self._size * self._size
 
     def __str__(self):
-        return "[Square] {}/{}".format(self._Rectangle__width,
-                                       self._Rectangle__height)
+        """
+        Returns the square description.
+
+        Returns:
+            str: The description in the format [Rectangle] <width>/<height>.
+        """
+        return "[Rectangle] {}/{}".format(self._size, self._size)
+
+    def __dir__(cls):
+        """
+        Returns:
+            list: List of attributes excluding __init_subclass__.
+        """
+        return [
+            attribute
+            for attribute in super().__dir__()
+            if attribute != "__init_subclass__"
+        ]
