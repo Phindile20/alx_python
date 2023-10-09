@@ -1,23 +1,16 @@
-#!/usr/bin/python3
-
-"""
-Write a Python script that takes in a URL,
-sends a request to the URL and displays the body of the response.
-"""
-
 import requests
 import sys
 
 
-if len(sys.argv) != 2:
-    print("Usage: python script_name.py <URL>")
-    sys.exit(1)
+def get_request(url):
+    """Sends a GET request to the given URL."""
+    response = requests.get(url)
+    if response.status_code >= 400:
+        print("Error code:", response.status_code)
+    return response.text
 
-url = sys.argv[1]
 
-response = requests.get(url)
-
-if response.status_code >= 400:
-    print("Error code:", response.status_code)
-else:
-    print(response.text)
+if __name__ == "__main__":
+    url = sys.argv[1]
+    response_text = get_request(url)
+    print(response_text)
